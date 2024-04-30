@@ -1,10 +1,38 @@
-import React from "react";
 import { Grid, Menu, Divider } from "semantic-ui-react";
-import { Link } from "react-router-dom";
-import {acountingGroup} from "../constants/sidebarGroups/acountingGroup.js"
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import "semantic-ui-css/semantic.min.css";
+import { acountingGroup } from "../constants/sidebarGroups/acountingGroup.js";
+import { adminGroup } from "../constants/sidebarGroups/adminGroup.js";
+import { kmsGroup } from "../constants/sidebarGroups/kmsGroup.js";
+import { staffGroup } from "../constants/sidebarGroups/staffGroup.js";
+import { storageGroup } from "../constants/sidebarGroups/storageGroup.js";
 
 function SideBarContainer() {
-  const groups = acountingGroup;
+  const [groups, setGroups] = useState(acountingGroup);
+  const location = useLocation();
+
+  useEffect(() => {
+    const isLocation = localStorage.getItem("isLocation");
+    setGroups(getGroupsByLocation(isLocation));
+  }, []);
+
+  const getGroupsByLocation = (location) => {
+    switch (location) {
+      case "staff":
+        return staffGroup;
+      case "warehouse":
+        return storageGroup;
+      case "accounting":
+        return acountingGroup;
+      case "admin":
+        return adminGroup;
+      case "kms":
+        return kmsGroup;
+      default:
+        return acountingGroup;
+    }
+  };
 
   const renderMenuItems = () => {
     return groups.map((group, index) => (
@@ -17,18 +45,35 @@ function SideBarContainer() {
   };
 
   const renderGroupItems = (groupFunctions) => {
-    return Object.keys(groupFunctions).map((key) => (
-      <Menu.Item key={key} as={Link} to={groupFunctions[key].link}>
-        {groupFunctions[key].text}
-      </Menu.Item>
-    ));
+    return Object.keys(groupFunctions).map((key) => {
+      const link = groupFunctions[key].link;
+      const text = groupFunctions[key].text;
+      const isActive = location.pathname === link;
+      return (
+        <Menu.Item
+          key={key}
+          as={Link}
+          to={link}
+          active={isActive}
+          style={{
+            fontWeight: isActive ? "bold" : "normal", // In đậm khi được chọn
+            fontSize: isActive ? "120%" : "normal",
+            color: isActive ? "teal" : "black"  // Màu xanh dương khi được chọn
+          }}
+        >
+          {text}
+        </Menu.Item>
+      );
+    });
   };
+  
+
 
   return (
     <div className="App">
       <Grid padded>
         <div className="sidebar-container">
-          <Menu vertical fluid text style={{ width: '100%' }}>
+          <Menu vertical fluid text style={{ width: "100%" }}>
             {renderMenuItems()}
           </Menu>
         </div>

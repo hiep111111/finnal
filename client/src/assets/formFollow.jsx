@@ -118,7 +118,6 @@ function ContentFollowContainer() {
               <div className="content-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <h1 dividing size="huge" as="h1" style={{ marginTop: "-20px", marginLeft: "1%", color: "black", backgroundColor: "white" }}>
                   {sectionTitle}
-                  hhhhhhhhhhhhh
                 </h1>
                 <div className="content-button" style={{ marginTop: "-30px", display: "flex", flexDirection: "row" }}>
                   <AddingButton isLoading={isLoading} />
