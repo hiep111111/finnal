@@ -9,6 +9,24 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [language, setLanguage] = useState('vi');
 
+  // Function to extract and save location from URL
+  const extractAndSaveLocation = () => {
+    try {
+      const url = window.location.href;
+      const parsedUrl = new URL(url);
+      const pathname = parsedUrl.pathname;
+      const parts = pathname.split('/').filter(part => part !== '');  
+      const location = parts.length > 0 ? parts[0] : null;
+      localStorage.setItem('isLocation', location);  
+    } catch (error) {
+      console.error('Error parsing URL:', error);
+    }
+  };
+
+  useEffect(() => {
+    extractAndSaveLocation(); // Run once when component mounts
+  }, []); // Empty dependency array ensures it runs only once
+
   const login = async (userName, passWord) => {
     try {
       const userData = { userName, passWord };
@@ -27,6 +45,8 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("refreshToken", res.data.refreshToken);
       localStorage.setItem("isLoggedIn", true);
       setIsLoggedIn(true);
+
+      extractAndSaveLocation(); // Run after successful login
     } catch (err) {
       throw new Error("Username or password incorrect!");
     }
@@ -38,6 +58,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("accessTokennnnn");
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("extractedValue");
     localStorage.removeItem("id");
     window.location.href = "/";
   };
@@ -48,3 +69,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export default AuthProvider;

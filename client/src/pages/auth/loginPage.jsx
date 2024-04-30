@@ -1,32 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/App.css";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from '../../components/authComponet';
+import { useAuth } from '../../components/defaultComponet';
 
 const LoginPage = () => {
-  const { login } = useAuth();
+  const { login, isLoggedIn } = useAuth(); // Giả sử useAuth cung cấp hàm login và isLoggedIn
   const [userName, setUsername] = useState("");
   const [passWord, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  
-  const isLoggedIn = localStorage.getItem("isLoggedIn")
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/staff/timeSheets");
+      window.location.reload()
+    }
+  }, [isLoggedIn, navigate]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    if (isLoggedIn) {
-      navigate("/staff/timeSheets");
-    }
     try {
       await login(userName, passWord);
       navigate("/staff/timeSheets");
+      window.location.reload()
     } catch (error) {
       setError("Username or password incorrect!");
     } finally {
       setIsLoading(false);
     }
   };
+
+
 
   return (
     <div className="container">

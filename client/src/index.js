@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Auth } from './pages/auth';
-import { AuthProvider } from './components/authComponet';
+import { AuthProvider } from './components/defaultComponet';
 import { Staff } from './pages/staff';
 
 ReactDOM.render(
@@ -12,7 +12,6 @@ ReactDOM.render(
         <Staff />
     </AuthProvider>
   </React.StrictMode>,
-  
   document.getElementById('root')
 );
 

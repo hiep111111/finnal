@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Menu, Divider } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import {acountingGroup} from "../constants/sidebarConstants/acountingGroup.js"
+import {acountingGroup} from "../constants/sidebarGroups/acountingGroup.js"
 
 function SideBarContainer() {
   const groups = acountingGroup;

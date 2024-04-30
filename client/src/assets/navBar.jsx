@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Menu } from "semantic-ui-react";
-import { useAuth } from "../components/authComponet";
+import { useAuth } from "../components/defaultComponet";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -20,11 +20,14 @@ function NavBarContainer() {
     }
   }, []);
 
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.location.reload();
+  };
 
   const handleLogout = () => {
     Logout();
   };
-
 
   return (
     <div className="nav-bar-container">
@@ -37,24 +40,24 @@ function NavBarContainer() {
           </Menu.Item>
           <Menu.Menu position="left">
             <Menu.Item as="a">
-              <span onClick={() => { navigate("/staff/timeSheets"); }}>Nhân viên</span>
+              <span onClick={() => { handleNavigation("/staff/timeSheets"); }}>Nhân viên</span>
             </Menu.Item>
             <Menu.Item as="a">
-              <span onClick={() => { navigate("/warehouse"); }}>Kho hàng</span>
+              <span onClick={() => { handleNavigation("/warehouse"); }}>Kho hàng</span>
             </Menu.Item>
             <Menu.Item as="a">
-              <span onClick={() => { navigate("/accounting"); }}>Kế toán</span>
+              <span onClick={() => { handleNavigation("/accounting"); }}>Kế toán</span>
             </Menu.Item>
             <Menu.Item as="a">
-              <span onClick={() => { navigate("/kms"); }}>Tri Thức</span>
+              <span onClick={() => { handleNavigation("/kms"); }}>Tri Thức</span>
             </Menu.Item>
             {isAdmin && <Menu.Item as="a">
-              <span onClick={() => { navigate("/admin"); }}>Quản trị</span>
+              <span onClick={() => { handleNavigation("/admin"); }}>Quản trị</span>
             </Menu.Item>}
           </Menu.Menu>
           <Menu.Menu position="right">
             <Menu.Item as="a">
-              <span onClick={() => { navigate("/profile"); }}>Thông tin cá nhân</span>
+              <span onClick={() => { handleNavigation("/profile"); }}>Thông tin cá nhân</span>
             </Menu.Item>
             <Menu.Item onClick={() => handleLogout()}>Đăng xuất</Menu.Item>
           </Menu.Menu>
