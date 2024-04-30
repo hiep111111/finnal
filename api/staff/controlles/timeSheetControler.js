@@ -35,31 +35,28 @@ const gettimeSheetByIdController = async (req, res) => {
 // Route Create
 const postTimeSheetController = async (req, res) => {
     try {
-        if (!req.body.timesheetCode ||
-            !req.body.timesheetName ||
-            !req.body.createdByUserName ||
-            !req.body.state ||
-            !req.body.workDuration ||
-            !req.body.workLocation
+        const { timesheetCode, timesheetName, createdByUserName, state, workDuration, workLocation } = req.body;
+        if (!timesheetCode ||
+            !timesheetName ||
+            !createdByUserName ||
+            !workDuration 
         ) {
             return res.status(400).send({
                 message: 'Send all required fields',
             });
         }
 
-        const existingTimesheetCode = await timeSheetModel.findOne({
-            timesheetCode: req.body.timesheetCode
-        });
+        const existingTimesheetCode = await timeSheetModel.findOne({ timesheetCode });
         if (existingTimesheetCode) {
             return res.status(400).send({ message: 'existingTimesheetCode already exists' });
         }
         const newTimeSheet = {
-            timesheetCode: req.body.timesheetCode,
-            timesheetName: req.body.timesheetName,
-            createdByUserName: req.body.createdByUserName,
-            state: req.body.state,
-            workDuration: req.body.workDuration,
-            workLocation: req.body.workLocation,
+            timesheetCode,
+            timesheetName ,
+            createdByUserName ,
+            state ,
+            workDuration ,
+            workLocation,
         };
 
         const timeSheet = await timeSheetModel.create(newTimeSheet);

@@ -15,19 +15,17 @@ export const DataProvider = ({ children }) => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:1235/api/timeSheet/get");
+      const response = await fetch("http://localhost:1235/api/kpi/get");
       const responseData = await response.json();
-
+      console.log(responseData);
       const formattedData = responseData.map(item => ({
-        timesheetCode: item.timesheetCode,
-        timesheetName: item.timesheetName,
-        createdByUserName: item.createdByUserName,
-        state: item.state,
-        workLocation: item.workLocation,
-        createdAt: formatDate(item.createdAt),
-        updatedAt: formatDate(item.updatedAt)
-      }));
-
+        userName: item.userName,
+        employeeCode: item.employeeCode,
+        Title: item.Title,
+        email: item.email,
+        department: item.department,
+        createdAt: formatDate(item.createdAt)
+       }));
       setData(formattedData);
     } catch (error) {
       console.error("Error fetching data:", error);
