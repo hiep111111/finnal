@@ -4,6 +4,7 @@ import { Menu } from "semantic-ui-react";
 import { useAuth } from "../components/defaultComponet";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate, useLocation } from "react-router-dom";
+import './css/index.css'
 
 function NavBarContainer() {
   const { Logout } = useAuth();

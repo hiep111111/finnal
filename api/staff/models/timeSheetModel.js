@@ -15,8 +15,8 @@ const timeSheetSchema = mongoose.Schema({
         required: true,
     },
     state: {
-        type: Boolean,
-        default: false 
+        type: String,
+        default: "Đã vào làm"
     },
     workDuration:{
         type: String,
@@ -24,7 +24,7 @@ const timeSheetSchema = mongoose.Schema({
     },
     workLocation: {
         type: String,
-        required: true,
+        default: "Tại văn phòng"
     } 
 },
 {

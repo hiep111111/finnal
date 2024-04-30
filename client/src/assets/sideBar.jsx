@@ -7,7 +7,7 @@ import { adminGroup } from "../constants/sidebarGroups/adminGroup.js";
 import { kmsGroup } from "../constants/sidebarGroups/kmsGroup.js";
 import { staffGroup } from "../constants/sidebarGroups/staffGroup.js";
 import { storageGroup } from "../constants/sidebarGroups/storageGroup.js";
-
+import './css/index.css'
 function SideBarContainer() {
   const [groups, setGroups] = useState(acountingGroup);
   const location = useLocation();
@@ -45,7 +45,7 @@ function SideBarContainer() {
   };
 
   const renderGroupItems = (groupFunctions) => {
-    return Object.keys(groupFunctions).map((key) => {
+    const menuItems = Object.keys(groupFunctions).map((key) => {
       const link = groupFunctions[key].link;
       const text = groupFunctions[key].text;
       const isActive = location.pathname === link;
@@ -56,15 +56,17 @@ function SideBarContainer() {
           to={link}
           active={isActive}
           style={{
-            fontWeight: isActive ? "bold" : "normal", // In đậm khi được chọn
+            fontWeight: isActive ? "bold" : "normal", 
             fontSize: isActive ? "120%" : "normal",
-            color: isActive ? "teal" : "black"  // Màu xanh dương khi được chọn
+            color: isActive ? "teal" : "black"  
           }}
         >
           {text}
         </Menu.Item>
       );
     });
+  
+    return menuItems;
   };
   
 

@@ -2,19 +2,19 @@ import React from "react";
 import "semantic-ui-css/semantic.min.css";
 import SideBarContainer from "../../assets/sideBar.jsx"; // ko phải nghĩ
 import NavBarContainer from "../../assets/navBar.jsx"; // ko phải  tạo
-import PreviewTimeSheetForm from '../../forms/previewTimeSheetForm.jsx' /// phải Tạo
-import { DataProvider } from "../../context/previewTimeSheetContext.js";
+import CreateTimeSheetForm from "../../forms/createTimeSheetForm.jsx";
+import { DataProvider } from "../../context/previewTimeSheetContext.js"; // phải Tạo
 
-function ShowTimesheetPage() {
+function CreateTimesheetPage() {
   return (
     <div className="App">
       <NavBarContainer></NavBarContainer>
       <SideBarContainer></SideBarContainer>
       <DataProvider>
-        <PreviewTimeSheetForm></PreviewTimeSheetForm>
+        <CreateTimeSheetForm></CreateTimeSheetForm>
       </DataProvider>
     </div>
   );
 }
 
-export default ShowTimesheetPage;
+export default CreateTimesheetPage;
