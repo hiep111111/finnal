@@ -9,7 +9,6 @@ function NavBarContainer() {
   const { Logout } = useAuth();
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); // Sử dụng hook useLocation để lấy thông tin về URL hiện tại
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessTokennnnn");
@@ -21,20 +20,11 @@ function NavBarContainer() {
     }
   }, []);
 
-  useEffect(() => {
-    handleStatusLocation(); // Gọi hàm khi component được render và mỗi khi URL thay đổi
-  }, [location.pathname]); // Sử dụng location.pathname làm dependency để gọi hàm mỗi khi URL thay đổi
 
   const handleLogout = () => {
     Logout();
   };
 
-  const handleStatusLocation = () => {
-    const url = window.location.pathname;
-    const parts = url.split('/');
-    const location = `/${parts[1]}`; 
-    localStorage.setItem("isLocation", location);
-  };
 
   return (
     <div className="nav-bar-container">

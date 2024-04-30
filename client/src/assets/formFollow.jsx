@@ -17,19 +17,19 @@ function ContentFollowContainer() {
   const ChecktoSetTitle = (currentPathname) => {
     switch (currentPathname) {
       case "/staff/timesheets/":
-        setSectionTitle(`Chấm công hàng ngày`);
+        setSectionTitle(`Daily Timesheets`);
         break;
       case "/staff/personalKPIReports/":
-        setSectionTitle(`KPI cá nhân`);
+        setSectionTitle(`Personal KPI Reports`);
         break;
       case "/staff/leaveSlips/":
-        setSectionTitle(`Đơn xin nghỉ phép`);
+        setSectionTitle(`Leave Slips`);
         break;
       case "/staff/overtimes/":
-        setSectionTitle(`Đơn xin tăng ca`);
+        setSectionTitle(`Overtime Requests`);
         break;
       case "/staff/paymentRequisitions":
-        setSectionTitle(`Đơn yêu cầu thanh toán`);
+        setSectionTitle(`Payment Requisitions`);
         break;
       default:
         break;
@@ -65,14 +65,14 @@ function ContentFollowContainer() {
     ChecktoSetTitle(currentPathname());
   }, []);
 
-  const vietnameseHeaders = {
-    timesheetCode: 'Mã chấm công',
-    timesheetName: 'Người chấm công',
-    createdByUserName: 'Người tạo',
-    state: 'Trạng thái',
-    workLocation: 'Địa điểm làm việc',
-    createdAt: 'Ngày tạo',
-    updatedAt: 'Ngày cập nhật'
+  const tableHeaders = {
+    timesheetCode: 'Timesheet Code',
+    timesheetName: 'Employee',
+    createdByUserName: 'Created By',
+    state: 'State',
+    workLocation: 'Work Location',
+    createdAt: 'Created At',
+    updatedAt: 'Updated At'
   };
 
   const renderTableHeaders = () => {
@@ -83,8 +83,8 @@ function ContentFollowContainer() {
     return (
       <Table.Header>
         <Table.Row>
-          {Object.keys(vietnameseHeaders).map((key) => (
-            <Table.HeaderCell key={key}>{vietnameseHeaders[key]}</Table.HeaderCell>
+          {Object.keys(tableHeaders).map((key) => (
+            <Table.HeaderCell key={key}>{tableHeaders[key]}</Table.HeaderCell>
           ))}
         </Table.Row>
       </Table.Header>
@@ -117,7 +117,7 @@ function ContentFollowContainer() {
             <div className="content-header-header">
               <div className="content-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <h1 dividing size="huge" as="h1" style={{ marginTop: "-20px", marginLeft: "1%", color: "black", backgroundColor: "white" }}>
-                  sectionTitle
+                  {sectionTitle}
                 </h1>
                 <div className="content-button" style={{ marginTop: "-30px", display: "flex", flexDirection: "row" }}>
                   <AddingButton isLoading={isLoading} />
