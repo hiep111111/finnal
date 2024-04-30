@@ -40,7 +40,7 @@ function ContentFollowContainer() {
     try {
       const response = await fetch("http://localhost:1235/api/timeSheet/get");
       const responseData = await response.json();
-  
+
       const formattedData = responseData.map(item => ({
         timesheetCode: item.timesheetCode,
         timesheetName: item.timesheetName,
@@ -50,7 +50,7 @@ function ContentFollowContainer() {
         createdAt: item.createdAt,
         updatedAt: item.updatedAt
       }));
-  
+
       setData(formattedData);
       setIsLoading(false);
     } catch (error) {
@@ -76,19 +76,16 @@ function ContentFollowContainer() {
   };
 
   const renderTableHeaders = () => {
-    if (!data || data.length === 0) {
-      return null;
-    }  
+    const headers = ['Number', 'Checkbox', ...Object.keys(tableHeaders)];
 
     return (
       <Table.Header>
         <Table.Row>
-          {Object.keys(tableHeaders).map((key) => (
-            <Table.HeaderCell key={key}>{tableHeaders[key]}</Table.HeaderCell>
+          {headers.map((header, idx) => (
+            <Table.HeaderCell key={idx}>{header}</Table.HeaderCell>
           ))}
         </Table.Row>
-      </Table.Header>
-    );
+      </Table.Header>);
   };
 
   const renderTableBody = () => {
@@ -97,17 +94,23 @@ function ContentFollowContainer() {
     }
 
     return (
-      <Table.Body>
+       <Table.Body >
         {data.map((row, index) => (
           <Table.Row key={index}>
+            <Table.Cell>{index + 1}</Table.Cell> {/* Thêm trường số thứ tự */}
+            <Table.Cell>
+              <input type="checkbox" /> {/* Thêm cột checkbox */}
+            </Table.Cell>
             {Object.values(row).map((value, idx) => (
-              <Table.Cell key={idx}>{value}</Table.Cell>
+              <Table.Cell key={idx + 2}>{value}</Table.Cell>
             ))}
           </Table.Row>
         ))}
       </Table.Body>
     );
   };
+
+
 
   return (
     <div>
