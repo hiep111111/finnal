@@ -10,6 +10,29 @@ function NavBarContainer() {
   const { Logout } = useAuth();
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+  const [state, setState] = useState(1);
+
+  useEffect(() => {
+    const isLocation = localStorage.getItem("typeModule");
+    setState(getStatesByLocation(isLocation));
+  }, []);
+
+  const getStatesByLocation = (location) => {
+    switch (location) {
+      case "staff":
+        return 1;
+      case "warehouse":
+        return 2;
+      case "accounting":
+        return 3;
+      case "admin":
+        return 4;
+      case "kms":
+        return 5;
+      default:
+        return 6;
+    }
+  }
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessTokennnnn");
@@ -40,26 +63,40 @@ function NavBarContainer() {
             </div>
           </Menu.Item>
           <Menu.Menu position="left">
-            <Menu.Item as="a">
+            <div className={state === 1 ? 'active-item' : ''}>
+            <Menu.Item as="a" >
               <span onClick={() => { handleNavigation("/staff/timeSheets"); }}>Nhân viên</span>
             </Menu.Item>
-            <Menu.Item as="a">
+            </div>
+            <div className={state === 2 ? 'active-item' : ''}>
+            <Menu.Item as="a" className={state === 2 ? 'active-item' : ''}>
               <span onClick={() => { handleNavigation("/warehouse"); }}>Kho hàng</span>
             </Menu.Item>
+            </div>
+            <div className={state === 3 ? 'active-item' : ''}>
             <Menu.Item as="a">
               <span onClick={() => { handleNavigation("/accounting"); }}>Kế toán</span>
             </Menu.Item>
+            </div>
+            <div className={state === 4 ? 'active-item' : ''}>
             <Menu.Item as="a">
               <span onClick={() => { handleNavigation("/kms"); }}>Tri Thức</span>
             </Menu.Item>
-            {isAdmin && <Menu.Item as="a">
-              <span onClick={() => { handleNavigation("/admin"); }}>Quản trị</span>
-            </Menu.Item>}
+            </div>
+            <div className={state === 5 ? 'active-item' : ''}>
+            {isAdmin && (
+              <Menu.Item as="a" className={state === 4 ? 'active-item' : ''}>
+                <span onClick={() => { handleNavigation("/admin"); }}>Quản trị</span>
+              </Menu.Item>
+            )}
+            </div>
           </Menu.Menu>
           <Menu.Menu position="right">
+          <div className={state === 6 ? 'active-item' : ''}>
             <Menu.Item as="a">
               <span onClick={() => { handleNavigation("/profile"); }}>Thông tin cá nhân</span>
             </Menu.Item>
+            </div>
             <Menu.Item onClick={() => handleLogout()}>Đăng xuất</Menu.Item>
           </Menu.Menu>
         </Menu>
@@ -69,3 +106,4 @@ function NavBarContainer() {
 }
 
 export default NavBarContainer;
+

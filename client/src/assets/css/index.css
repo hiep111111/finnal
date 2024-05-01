@@ -44,3 +44,9 @@
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
   overflow: auto;
 }
+
+.active-item{
+    background-color: #007373;  
+    color: #fff;  
+  
+}

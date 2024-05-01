@@ -13,7 +13,7 @@ function SideBarContainer() {
   const location = useLocation();
 
   useEffect(() => {
-    const isLocation = localStorage.getItem("isLocation");
+    const isLocation = localStorage.getItem("typeModule");
     setGroups(getGroupsByLocation(isLocation));
   }, []);
 

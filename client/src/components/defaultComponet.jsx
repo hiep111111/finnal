@@ -8,24 +8,36 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [language, setLanguage] = useState('vi');
+  const [location, setLocation] = useState('staff');
 
-  // Function to extract and save location from URL
-  const extractAndSaveLocation = () => {
+   const extractAndSaveLocation = () => {
     try {
       const url = window.location.href;
       const parsedUrl = new URL(url);
       const pathname = parsedUrl.pathname;
       const parts = pathname.split('/').filter(part => part !== '');  
       const location = parts.length > 0 ? parts[0] : null;
-      localStorage.setItem('isLocation', location);  
+      localStorage.setItem('typeModule', location);  
     } catch (error) {
       console.error('Error parsing URL:', error);
     }
   };
 
+
   useEffect(() => {
-    extractAndSaveLocation(); // Run once when component mounts
-  }, []); // Empty dependency array ensures it runs only once
+    extractAndSaveLocation();  
+     window.addEventListener('popstate', extractAndSaveLocation);
+    return () => {
+      window.removeEventListener('popstate', extractAndSaveLocation);
+    };
+  }, []);  
+
+  useEffect(() => {
+    const storedLocation = localStorage.getItem('typeModule');
+    if (storedLocation !== location) {
+      setLocation(storedLocation);
+    }
+  }, [location]);
 
   const login = async (userName, passWord) => {
     try {
@@ -59,6 +71,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("accessTokennnnn");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("extractedValue");
+    localStorage.removeItem("typeModule");
     localStorage.removeItem("id");
     window.location.href = "/";
   };
