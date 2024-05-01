@@ -4,6 +4,7 @@ import ShowTimesheetPage from './showTimesheetPage';
 import PermisionComponet from '../../components/permisionComponet';
 import ShowKpiPerStaffPage from './showKpiPerStaffPage';
 import ShowLeaveSlipPage from './showKpiPerStaffPage';
+import ShowOverTimePage from './showOverTimePage';
 
 export const Staff = () => {
   return (
@@ -13,6 +14,7 @@ export const Staff = () => {
         <Route path="/staff/timeSheets" element={<ShowTimesheetPage />} />
         <Route path="/staff/personalKPIReports" element={<ShowKpiPerStaffPage />} />
         <Route path="/staff/leaveSlips" element={<ShowLeaveSlipPage />} />
+        <Route path="/staff/overtimes/" element={<ShowOverTimePage />} />
       </Routes>
     </BrowserRouter>
     </PermisionComponet>
