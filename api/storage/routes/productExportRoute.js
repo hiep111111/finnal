@@ -1,5 +1,5 @@
 const express = require("express");
-const { deletetimeSheetController, gettimeSheetByIdController, gettimeSheetController, postTimeSheetController} = require("../controlles/timeSheetControler");
+const { deletetimeSheetController, gettimeSheetByIdController, gettimeSheetController, postTimeSheetController} = require("../controlles/productImportControler");
 
 const router = express.Router();
 

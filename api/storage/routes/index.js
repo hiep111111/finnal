@@ -1,6 +1,6 @@
 // routes/index.js
-const timeSheetRoute = require('./timesheetRoute');
-const paymentRequisitionRoute = require('./paymentRequisitionRoute');
+const timeSheetRoute = require('./productExportRoute');
+const paymentRequisitionRoute = require('./productImportRoute');
 
 const routes = (timeSheet) => {
     timeSheet.use('/api/storage/timeSheet', timeSheetRoute);
