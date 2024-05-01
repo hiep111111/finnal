@@ -2,7 +2,7 @@ import React from "react";
 import { Divider, Grid, Table } from "semantic-ui-react";
 import { useData } from "../context/previewLeaveSlipContext";
 import '../assets/css/index.css'
-import { AddingButton, SeachingButton, RefreshButton } from "../assets/button";
+import { AddingButton, SeachingButton, RefreshButton } from "../assets/constants/button";
 
 function PreviewLeaveSlipForm() {
   const { data, isLoading } = useData();

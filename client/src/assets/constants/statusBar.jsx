@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { timeSheetState } from "../constants/statesConstants/timeSheetState";
-import { workState } from "../constants/statesConstants/workState";
+import { timeSheetState } from "../../constants/statesConstants/timeSheetState";
+import { workState } from "../../constants/statesConstants/workState";
 
 function getCurrentPathname() {
   return window.location.pathname.split('/')[1];

@@ -21,9 +21,8 @@ export const DataProvider = ({ children }) => {
       const formattedData = responseData.map(item => ({
         userName: item.userName,
         department: item.department,
-        paymentMethod: item.paymentMethod,
         currency: item.currency,
-        amount: item.amount,
+        paymentMethod: item.paymentMethod,
         vendor: item.vendor,
         totalPaidAmount: item.totalPaidAmount,
         createdAt: formatDate(item.createdAt)

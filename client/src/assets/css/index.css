@@ -1,4 +1,27 @@
+@font-face {
+  font-family: 'Poppins-Black';
+  src: url('../fonts/Poppins-Black.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url('../fonts/Poppins-Bold.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Poppins-BoldItalic';
+  src: url('../fonts/Poppins-BoldItalic.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Poppins-Italic';
+  src: url('../fonts/Poppins-Italic.ttf') format('ttf');
+}
+.nav-bar-content{
+  font-family: 'Poppins-BoldItalic';
+}
 .sidebar-container {
+  font-weight:200;
   position: fixed;
   top: 22px;
   left: 0;
@@ -15,6 +38,9 @@
   flex-direction: column;
   width: 15%;
 }
+.sidebar-container-item{
+  margin: 0 auto;
+ }
 
 .content-container {
   position: fixed;
@@ -45,8 +71,8 @@
   overflow: auto;
 }
 
-.active-item{
-    background-color: #007373;  
-    color: #fff;  
-  
+.active-item {
+  background-color: #007373;
+  color: #fff;
+
 }

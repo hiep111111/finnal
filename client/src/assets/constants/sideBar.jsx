@@ -2,12 +2,13 @@ import { Grid, Menu, Divider } from "semantic-ui-react";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
-import { acountingGroup } from "../constants/sidebarGroups/acountingGroup.js";
-import { adminGroup } from "../constants/sidebarGroups/adminGroup.js";
-import { kmsGroup } from "../constants/sidebarGroups/kmsGroup.js";
-import { staffGroup } from "../constants/sidebarGroups/staffGroup.js";
-import { storageGroup } from "../constants/sidebarGroups/storageGroup.js";
-import './css/index.css'
+import { acountingGroup } from "../../constants/sidebarGroups/acountingGroup.js";
+import { adminGroup } from "../../constants/sidebarGroups/adminGroup.js";
+import { kmsGroup } from "../../constants/sidebarGroups/kmsGroup.js";
+import { staffGroup } from "../../constants/sidebarGroups/staffGroup.js";
+import { storageGroup } from "../../constants/sidebarGroups/storageGroup.js";
+import '../css/index.css'
+
 function SideBarContainer() {
   const [groups, setGroups] = useState(acountingGroup);
   const location = useLocation();
@@ -56,28 +57,30 @@ function SideBarContainer() {
           to={link}
           active={isActive}
           style={{
-            fontWeight: isActive ? "bold" : "normal", 
+            fontWeight: isActive ? "bold" : "normal",
             fontSize: isActive ? "120%" : "normal",
-            color: isActive ? "teal" : "black"  
+            color: isActive ? "teal" : "black"
           }}
         >
           {text}
         </Menu.Item>
       );
     });
-  
+
     return menuItems;
   };
-  
+
 
 
   return (
     <div className="App">
       <Grid padded>
         <div className="sidebar-container">
-          <Menu vertical fluid text style={{ width: "100%" }}>
-            {renderMenuItems()}
-          </Menu>
+          <div className="sidebar-container-item" >
+            <Menu vertical fluid text style={{ width: "100%" }}>
+              {renderMenuItems()}
+            </Menu>
+          </div>
         </div>
       </Grid>
     </div>
