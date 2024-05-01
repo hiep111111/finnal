@@ -47,6 +47,7 @@ function NavBarContainer() {
   const handleNavigation = (path) => {
     navigate(path);
     window.location.reload();
+
   };
 
   const handleLogout = () => {
@@ -66,7 +67,7 @@ function NavBarContainer() {
             <Menu.Menu position="left">
               <div className={state === 1 ? 'active-item' : ''}>
                 <Menu.Item as="a" >
-                  <span onClick={() => { handleNavigation("/staff/timeSheets"); }}>Nhân viên</span>
+                  <span onClick={() => { handleNavigation("/staff/timeSheets");  }}>Nhân viên</span>
                 </Menu.Item>
               </div>
               <div className={state === 2 ? 'active-item' : ''}>

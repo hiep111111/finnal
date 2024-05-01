@@ -1,12 +1,12 @@
 const express = require('express')
-const paymentRequisitionModel = require('../models/paymentRequisitionModel');
+const productExportModel = require('../models/productExportModel');
 
-const paymentRequisitionControler = express.Router();
+const productExportControler = express.Router();
 
 // Route Get
-const getAllPaymentRequisitionControler = async (req, res) => {
+const getAllProductExportControler = async (req, res) => {
     try {
-        const payMent = await paymentRequisitionModel.find();
+        const payMent = await productExportModel.find();
         return res.status(200).json(payMent);
     } catch (error) {
         console.log(error.message);
@@ -15,11 +15,11 @@ const getAllPaymentRequisitionControler = async (req, res) => {
 };
 
 // Route Get by Id
-const getPaymentRequisitionControler = async (req, res) => {
+const getProductExportControler = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const payMent = await paymentRequisitionModel.findById(id);
+        const payMent = await productExportModel.findById(id);
 
         if (!overTime) {
             return res.status(404).json({ message: 'Request not found' });
@@ -31,72 +31,39 @@ const getPaymentRequisitionControler = async (req, res) => {
     }
 };
 
-const postPaymentRequisitionControler = async (req, res) => {
+const postProductExportControler = async (req, res) => {
     try {
-        const { 
-            userName, 
-            department, 
-            company, 
-            paymentMethod, 
-            currency, 
-            vendor, 
-            vendorPhone, 
-            vendorAddress, 
-            vendorEmail, 
-            amount, 
-            totalPaidAmount, 
-            description 
+        const {
+            productName,
+            requester,
+            count,
+            unitPrice,
+            toltalPrice,
+            state
         } = req.body;
 
-        if (!userName ||
-            !department ||
-            !company ||
-            !paymentMethod
+        if (!productName ||
+            !requester ||
+            !count ||
+            !unitPrice ||
+            !toltalPrice
         ) {
             return res.status(400).send({
                 message: 'Send all required fields',
             });
         }
-        
-        // // Kiểm tra tính hợp lệ của số điện thoại
-        // if (isNaN(vendorPhone) || vendorPhone.toString().length !== 10) {
-        //     return res.status(400).send({
-        //         message: 'Invalid phone number',
-        //     });
-        // }
-
-        // // Kiểm tra tính hợp lệ của số tiền và tổng số tiền đã thanh toán
-        // if (isNaN(amount) || amount <= 0 || isNaN(totalPaidAmount) || totalPaidAmount < 0) {
-        //     return res.status(400).send({
-        //         message: 'Invalid amount or total paid amount',
-        //     });
-        // }
-
-        // // Kiểm tra tính hợp lệ của địa chỉ email nhà cung cấp
-        // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        // if (!emailRegex.test(vendorEmail)) {
-        //     return res.status(400).send({
-        //         message: 'Invalid vendor email',
-        //     });
-        // }
 
         const newPayment = {
-            userName, 
-            department, 
-            company, 
-            paymentMethod, 
-            currency, 
-            vendor, 
-            vendorPhone, 
-            vendorAddress, 
-            vendorEmail, 
-            amount, 
-            totalPaidAmount, 
-            description 
+            productName,
+            requester,
+            count,
+            unitPrice,
+            toltalPrice,
+            state
         };
 
- 
-        const payment = await paymentRequisitionModel.create(newPayment);
+
+        const payment = await productExportModel.create(newPayment);
         return res.status(201).send(payment);
     } catch (error) {
         console.log(error.message);
@@ -106,11 +73,11 @@ const postPaymentRequisitionControler = async (req, res) => {
 
 
 // Route Delete
-const deletePaymentRequisitionControler = async (req, res) => {
+const deleteProductExportControler = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const result = await paymentRequisitionModel.findByIdAndDelete(id);
+        const result = await productExportModel.findByIdAndDelete(id);
 
         if (!result) {
             return res.status(404).json({ message: '  not found' });
@@ -124,9 +91,9 @@ const deletePaymentRequisitionControler = async (req, res) => {
 };
 
 module.exports = {
-    deletePaymentRequisitionControler,
-    getAllPaymentRequisitionControler,
-    getPaymentRequisitionControler,
-    postPaymentRequisitionControler,
+    deleteProductExportControler,
+    getAllProductExportControler,
+    getProductExportControler,
+    postProductExportControler,
 
 };

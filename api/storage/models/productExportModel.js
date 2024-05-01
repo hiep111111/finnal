@@ -1,41 +1,34 @@
 const mongoose = require('mongoose');
 
-const kpiPerStaffSchema = mongoose.Schema({
-    userName:{
-        type: String,
-        required: true,
-     },
-    employeeCode:{
+const productExportSchema = mongoose.Schema({
+    productName: {
         type: String,
         required: true,
     },
-    Title: {
+    requester: {
         type: String,
         required: true,
     },
-    email: {
-        type: String,
-        required: true,
-    },
-    department:{
-        type: String,
-        required: true,
-    },
-    kpiMonth: {
+    count: {
         type: Number,
         required: true,
     },
-    fileData: {
-        data: Buffer,  
-        contentType: {
-            type: String,
-            default: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' // Loại nội dung của tệp Excel
-        }
+    unitPrice: {
+        type: Number,
+        required: true,
+    },
+    toltalPrice: {
+        type: Number,
+        required: true,
+    },
+    state: {
+        type: Number,
+        default: "Chờ duyệt"
     }
 },
-{
-    timestamps: true,
-});
+    {
+        timestamps: true,
+    });
 
-const kpiPerStaffModel = mongoose.model('kpiPerStaffModel', kpiPerStaffSchema);
-module.exports = kpiPerStaffModel;
+const productExportModel = mongoose.model('productExportModel', productExportSchema);
+module.exports = productExportModel;

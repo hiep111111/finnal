@@ -1,11 +1,11 @@
 import React from "react";
 import "semantic-ui-css/semantic.min.css";
-import SideBarContainer from "../../assets/sideBar.jsx"; // ko phải tạo
-import NavBarContainer from "../../assets/navBar.jsx"; // ko phải  tạo
+import SideBarContainer from "../../assets/constants/sideBar.jsx";
+import NavBarContainer from "../../assets/constants/navBar.jsx"; // ko phải  tạo
 import PreviewKpiPerStaffForm from "../../forms/previewKpiPerStaffForm.jsx";
 import { DataProvider } from "../../context/previewKpiPerStaffContext.js";
 
-function ShowKpiPerStaffPage() {
+function ShowLeaveSlipPage() {
   return (
     <div className="App">
       <NavBarContainer></NavBarContainer>
@@ -17,4 +17,4 @@ function ShowKpiPerStaffPage() {
   );
 }
 
-export default ShowKpiPerStaffPage;
+export default ShowLeaveSlipPage;

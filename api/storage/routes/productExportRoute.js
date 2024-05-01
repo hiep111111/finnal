@@ -1,11 +1,11 @@
 const express = require("express");
-const { deletetimeSheetController, gettimeSheetByIdController, gettimeSheetController, postTimeSheetController} = require("../controlles/productImportControler");
+const { deleteProductExportControler, getAllProductExportControler, getProductExportControler, postProductExportControler} = require("../controlles/productExportControler");
 
 const router = express.Router();
 
-router.delete("/delete/:id", deletetimeSheetController);
-router.get("/get/:id", gettimeSheetByIdController);
-router.get("/get", gettimeSheetController);
-router.post("/post", postTimeSheetController);
+router.delete("/delete/:id", deleteProductExportControler);
+router.get("/get/:id", getProductExportControler);
+router.get("/get", getAllProductExportControler);
+router.post("/post", postProductExportControler);
 
 module.exports = router;

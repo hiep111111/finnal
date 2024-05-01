@@ -1,13 +1,13 @@
 const express = require('express')
-const timeSheetModel = require('../models/timeSheetModel')
+const productExportModel = require('../models/productExportModel');
 
-const timeSheetController = express.Router();
+const productExportControler = express.Router();
 
 // Route Get
-const gettimeSheetController = async (req, res) => {
+const getAllProductImportControler = async (req, res) => {
     try {
-        const timeSheet = await timeSheetModel.find();
-        return res.status(200).json(timeSheet);
+        const payMent = await productExportModel.find();
+        return res.status(200).json(payMent);
     } catch (error) {
         console.log(error.message);
         return res.status(500).send({ message: error.message });
@@ -15,52 +15,65 @@ const gettimeSheetController = async (req, res) => {
 };
 
 // Route Get by Id
-const gettimeSheetByIdController = async (req, res) => {
+const getProductImportControler = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const timeSheet = await timeSheetModel.findById(id);
+        const payMent = await productExportModel.findById(id);
 
-        if (!timeSheet) {
+        if (!overTime) {
             return res.status(404).json({ message: 'Request not found' });
         }
 
-        return res.status(200).json(timeSheet);
+        return res.status(200).json(payMent);
     } catch (error) {
-        console.log(error.message);
         res.status(500).send({ message: error.message });
     }
 };
 
-// Route Create
-const postTimeSheetController = async (req, res) => {
+const postProductImportControler = async (req, res) => {
     try {
-        const { timesheetCode, timesheetName, createdByUserName, state, workDuration, workLocation } = req.body;
-        if (!timesheetCode ||
-            !timesheetName ||
-            !createdByUserName ||
-            !workDuration 
+        const {
+            productName,
+            requester,
+            supplyer,
+            emailOfSupplyer,
+            numberOfSupplyer,
+            count,
+            unitPrice,
+            toltalPrice,
+            state
+        } = req.body;
+
+        if (!productName ||
+            !requester ||
+            !supplyer ||
+            !emailOfSupplyer ||
+            !numberOfSupplyer|| 
+            count||
+            unitPrice||
+            toltalPrice
         ) {
             return res.status(400).send({
                 message: 'Send all required fields',
             });
         }
 
-        const existingTimesheetCode = await timeSheetModel.findOne({ timesheetCode });
-        if (existingTimesheetCode) {
-            return res.status(400).send({ message: 'existingTimesheetCode already exists' });
-        }
-        const newTimeSheet = {
-            timesheetCode,
-            timesheetName ,
-            createdByUserName ,
-            state ,
-            workDuration ,
-            workLocation,
+        const newPayment = {
+            productName,
+            requester,
+            supplyer,
+            emailOfSupplyer,
+            numberOfSupplyer,
+            count,
+            unitPrice,
+            toltalPrice,
+            state
         };
 
-        const timeSheet = await timeSheetModel.create(newTimeSheet);
-        return res.status(201).send(timeSheet);
+
+        const payment = await productExportModel.create(newPayment);
+        return res.status(201).send(payment);
     } catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message });
@@ -69,14 +82,14 @@ const postTimeSheetController = async (req, res) => {
 
 
 // Route Delete
-const deletetimeSheetController = async (req, res) => {
+const deleteProductImportControler = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const result = await timeSheetModel.findByIdAndDelete(id);
+        const result = await productExportModel.findByIdAndDelete(id);
 
         if (!result) {
-            return res.status(404).json({ message: 'Timesheet not found' });
+            return res.status(404).json({ message: '  not found' });
         }
 
         return res.status(200).send({ message: 'Deleted successfully' });
@@ -87,9 +100,9 @@ const deletetimeSheetController = async (req, res) => {
 };
 
 module.exports = {
-    deletetimeSheetController,
-    gettimeSheetByIdController,
-    gettimeSheetController,
-    postTimeSheetController,
+    deleteProductImportControler,
+    getAllProductImportControler,
+    getProductImportControler,
+    postProductImportControler,
 
 };

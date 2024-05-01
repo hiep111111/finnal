@@ -1,48 +1,46 @@
 const mongoose = require('mongoose');
 
-const leaveSlipSchema = mongoose.Schema({
-    userName:{
-        type: String,
-        required: true,
-     },
-    leaveSlipName:{
-        type: String,
-        required: true,
-     },
-    reason	:{
+const productImportSchema = mongoose.Schema({
+    productName: {
         type: String,
         required: true,
     },
-    department: {
+    requester: {
         type: String,
         required: true,
     },
-    company: {
+    supplyer:{
         type: String,
         required: true,
     },
-    fromDate:{
-        type: Date ,
-        required: true
+    emailOfSupplyer: {
+        type: String,
+        required: true,
     },
-    toDate: {
-        type: Date ,
-        required: true
-     },
-    totalLeaveDays: {
+    numberOfSupplyer: {
         type: Number,
         required: true,
     },
-    informationMailList:{
-        type: String,
+    count: {
+        type: Number,
         required: true,
+    },
+    unitPrice: {
+        type: Number,
+        required: true,
+    },
+    toltalPrice: {
+        type: Number,
+        required: true,
+    },
+    state: {
+        type: Number,
+        default: 'Đang hờ duyệt'
     }
-
-
 },
-{
-    timestamps: true,
-});
+    {
+        timestamps: true,
+    });
 
-const leaveSlipModel = mongoose.model('leaveSlipModel', leaveSlipSchema);
-module.exports = leaveSlipModel;
+const productImportModel = mongoose.model('productImportModel', productImportSchema);
+module.exports = productImportModel;

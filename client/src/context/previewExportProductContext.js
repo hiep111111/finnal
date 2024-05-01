@@ -15,16 +15,25 @@ export const DataProvider = ({ children }) => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:1235/api/kpi/get");
+      const response = await fetch("http://localhost:1236/api/storage/productExportRoute/get");
       const responseData = await response.json();
-       const formattedData = responseData.map(item => ({
-        userName: item.userName,
-        employeeCode: item.employeeCode,
-        Title: item.Title,
-        email: item.email,
-        department: item.department,
+      const Data = responseData.map(item => ({
+        _id: item._id,
+        productName: item.productName,
+        requester: item.requester,
+        count: item.count,
+        unitPrice: item.unitPrice,
+        toltalPrice: item.toltalPrice,
         createdAt: formatDate(item.createdAt)
-       }));
+      }));
+      const formattedData = responseData.map(item => ({
+        productName: item.productName,
+        requester: item.requester,
+        count: item.count,
+        unitPrice: item.unitPrice,
+        toltalPrice: item.toltalPrice,
+        createdAt: formatDate(item.createdAt)
+      }));
       setData(formattedData);
     } catch (error) {
       console.error("Error fetching data:", error);
