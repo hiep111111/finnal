@@ -34,8 +34,8 @@ const productImportSchema = mongoose.Schema({
         required: true,
     },
     state: {
-        type: Number,
-        default: 'Đang hờ duyệt'
+        type: String,
+        default: 'Chờ duyệt'
     }
 },
     {

@@ -41,6 +41,15 @@ const postProductExportControler = async (req, res) => {
             toltalPrice,
             state
         } = req.body;
+        
+        const existingProduct = await productExportModel.findOne({ productName });
+
+        // Nếu tồn tại productName đã tồn tại, trả về lỗi
+        if (existingProduct) {
+            return res.status(400).send({
+                message: 'Product name already exists',
+            });
+        }
 
         if (!productName ||
             !requester ||

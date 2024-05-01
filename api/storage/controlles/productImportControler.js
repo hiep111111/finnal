@@ -49,16 +49,20 @@ const postProductImportControler = async (req, res) => {
             !requester ||
             !supplyer ||
             !emailOfSupplyer ||
-            !numberOfSupplyer|| 
-            count||
-            unitPrice||
-            toltalPrice
+            !numberOfSupplyer
         ) {
             return res.status(400).send({
                 message: 'Send all required fields',
             });
         }
+        const existingProduct = await productExportModel.findOne({ productName });
 
+        // Nếu tồn tại productName đã tồn tại, trả về lỗi
+        if (existingProduct) {
+            return res.status(400).send({
+                message: 'Product name already exists',
+            });
+        }
         const newPayment = {
             productName,
             requester,

@@ -22,7 +22,7 @@ const productExportSchema = mongoose.Schema({
         required: true,
     },
     state: {
-        type: Number,
+        type: String,
         default: "Chờ duyệt"
     }
 },
