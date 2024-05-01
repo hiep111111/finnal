@@ -14,9 +14,9 @@ function SideBarContainer() {
   const location = useLocation();
 
   useEffect(() => {
-    const isLocation = localStorage.getItem("typeModule");
-    setGroups(getGroupsByLocation(isLocation));
-  }, []);
+    const storedLocation = localStorage.getItem("typeModule");
+    setGroups(getGroupsByLocation(storedLocation || "staff"));  
+  }, [location]);
 
   const getGroupsByLocation = (location) => {
     switch (location) {
@@ -36,6 +36,7 @@ function SideBarContainer() {
   };
 
   const renderMenuItems = () => {
+    
     return groups.map((group, index) => (
       <React.Fragment key={index}>
         <Menu.Header style={{ fontWeight: "bold" }}>{group.groupName}</Menu.Header>

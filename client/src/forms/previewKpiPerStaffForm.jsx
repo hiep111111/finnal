@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { Divider, Grid, Table } from "semantic-ui-react";
 import { useData } from "../context/previewKpiPerStaffContext";
 import '../assets/css/index.css'
-import { AddingButton, SeachingButton, RefreshButton } from "../assets/button";
+import { AddingButton, SeachingButton, RefreshButton } from "../assets/constants/button";
 
 function PreviewKpiPerStaffForm() {
   const { data, isLoading } = useData();
+  const [activePage, setActivePage] = useState(1);
+  const itemsPerPage = 15;
 
   const renderTableHeaders = () => {
     const tableHeaders = [
@@ -52,6 +54,10 @@ function PreviewKpiPerStaffForm() {
     );
   };
 
+  const handlePageChange = (pageNumber) => {
+    setActivePage(pageNumber);
+  };
+
   return (
     <div>
       <Grid padded>
@@ -80,10 +86,27 @@ function PreviewKpiPerStaffForm() {
                 </Table>
               </div>
             </div>
+            <div className="pagination-wrapper">
+              <div className="pagination-controls">
+                <button onClick={() => handlePageChange(activePage - 1)} disabled={activePage === 1}>
+                <i class="angle double left icon"></i>
+                </button>
+                <button onClick={() => handlePageChange(activePage + 1)} disabled={activePage === Math.ceil(data.length / itemsPerPage)}>
+                <span> {activePage -1 }</span>
+                </button>
+                <span className="number-page-active"> {activePage}</span>
+                <button onClick={() => handlePageChange(activePage + 1)} disabled={activePage === Math.ceil(data.length / itemsPerPage)}>
+                  <span> {activePage + 1}</span>
+                </button>
+                <button onClick={() => handlePageChange(activePage + 1)} disabled={activePage === Math.ceil(data.length / itemsPerPage)}>
+                <i class="angle double right icon"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </Grid.Column>
       </Grid>
     </div>
   );
-  }
+}
 export default PreviewKpiPerStaffForm;

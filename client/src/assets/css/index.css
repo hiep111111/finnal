@@ -64,6 +64,7 @@
   margin-left: 2%;
   border-radius: 5px;
   margin-right: 2%;
+  margin-bottom: 2%;
   color: black;
   background-color: white;
   padding-bottom: 66vh;
@@ -75,4 +76,21 @@
   background-color: #007373;
   color: #fff;
 
+}
+
+.pagination-wrapper{
+  display: grid;
+  margin-bottom: 5px;
+  margin-left: 80%;
+}
+
+.pagination-controls{
+  gap: 20px;  
+
+}
+.number-page-active {
+  font-weight: bold;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-decoration: underline; 
 }

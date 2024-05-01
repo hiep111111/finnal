@@ -8,6 +8,7 @@ export const storageGroup = [
   {
     groupName: "QUẢN LÝ",
     functions: {
+      watchGoods: { text: "Xem mặt hàng", link: "/storage/create-request" },
       importGoods: { text: "Nhập hàng vào", link: "/storage/leave-request" },
       exportGoods: { text: "Xuất hàng ra", link: "/storage/employee-leave" }
     }
@@ -15,8 +16,7 @@ export const storageGroup = [
   {
     groupName: "THANH TOÁN",
     functions: {
-      paymentRequest: { text: "Đơn yêu cầu thanh toán", link: "/storage/payment-request" },
-      isPaid: { text: "Đơn đã thanh toán", link: "/storage/payment-paid" }
+      paymentRequest: { text: "Đơn hàng", link: "/storage/payment" },
     }
   }
 ];

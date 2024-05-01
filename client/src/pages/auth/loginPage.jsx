@@ -31,34 +31,40 @@ const LoginPage = () => {
       setIsLoading(false);
     }
   };
-
-
-
+ 
   return (
-    <div className="container">
-      <div className="login">
-        <form onSubmit={handleLogin}>
-          <span className="formTitle">Login</span>
-          <input
-            type="text"
-            placeholder="Username"
-            value={userName}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={passWord}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit" className="submitButton" disabled={isLoading}>
-            <span className="buttonContent">
-              {isLoading && <div className="loader"></div>}
-              {!isLoading && 'Login'}
-            </span>
-          </button>
-          {error && <span className="error">{error}</span>}
-        </form>
+    <div >
+      <div className="form-Login">
+        <div className="login">
+          <form onSubmit={handleLogin}>
+            <span className="formTitle">Login</span>
+            <div>
+              <input
+                type="text"
+                placeholder="Username"
+                value={userName}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <i className="user icon" ></i>
+            </div>
+            <div>
+              <input
+                type="password"
+                placeholder="Password"
+                value={passWord}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <i className="lock icon" ></i>
+            </div>
+            <button type="submit" className="submitButton" disabled={isLoading}>
+              <span className="buttonContent">
+                {isLoading && <div className="loader"></div>}
+                {!isLoading && 'Login'}
+              </span>
+            </button>
+            {error && <span className="error">{error}</span>}
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Divider, Grid, Table } from "semantic-ui-react";
 import { useData } from "../context/previewTimeSheetContext";
 import '../assets/css/index.css'
 import { AddingButton, SeachingButton, RefreshButton } from "../assets/constants/button";
+import ReactPaginate from 'react-js-pagination';
 
 function PreviewTimeSheetForm() {
   const { data, isLoading } = useData();
+  const [activePage, setActivePage] = useState(1);
+  const itemsPerPage = 15;
 
   const renderTableHeaders = () => {
     const tableHeaders = [
@@ -36,13 +39,16 @@ function PreviewTimeSheetForm() {
       return null;
     }
 
+    const startIndex = (activePage - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, data.length);
+
     return (
       <Table.Body>
-        {data.map((row, index) => (
+        {data.slice(startIndex, endIndex).map((row, index) => (
           <Table.Row key={index}>
-            <Table.Cell>{index + 1}</Table.Cell> 
+            <Table.Cell>{startIndex + index + 1}</Table.Cell>
             <Table.Cell>
-              <input type="checkbox" /> 
+              <input type="checkbox" />
             </Table.Cell>
             {Object.values(row).map((value, idx) => (
               <Table.Cell key={idx + 2}>{value}</Table.Cell>
@@ -51,6 +57,10 @@ function PreviewTimeSheetForm() {
         ))}
       </Table.Body>
     );
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setActivePage(pageNumber);
   };
 
   return (
@@ -81,10 +91,28 @@ function PreviewTimeSheetForm() {
                 </Table>
               </div>
             </div>
+            <div className="pagination-wrapper">
+              <div className="pagination-controls">
+                <button onClick={() => handlePageChange(activePage - 1)} disabled={activePage === 1}>
+                  <i class="angle double left icon"></i>
+                </button>
+                <button onClick={() => handlePageChange(activePage + 1)} disabled={activePage === Math.ceil(data.length / itemsPerPage)}>
+                  <span> {activePage - 1}</span>
+                </button>
+                <span className="number-page-active"> {activePage}</span>
+                <button onClick={() => handlePageChange(activePage + 1)} disabled={activePage === Math.ceil(data.length / itemsPerPage)}>
+                  <span> {activePage + 1}</span>
+                </button>
+                <button onClick={() => handlePageChange(activePage + 1)} disabled={activePage === Math.ceil(data.length / itemsPerPage)}>
+                  <i class="angle double right icon"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </Grid.Column>
       </Grid>
     </div>
   );
-  }
+}
+
 export default PreviewTimeSheetForm;

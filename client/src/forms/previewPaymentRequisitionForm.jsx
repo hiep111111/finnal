@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Divider, Grid, Table } from "semantic-ui-react";
 import { useData } from "../context/previewPaymentRequisitionContext";
 import '../assets/css/index.css'
@@ -6,6 +6,8 @@ import { AddingButton, SeachingButton, RefreshButton } from "../assets/constants
 
 function PreviewPaymentRequisitionForm() {
   const { data, isLoading } = useData();
+  const [activePage, setActivePage] = useState(1);
+  const itemsPerPage = 15;
 
   const renderTableHeaders = () => {
     const tableHeaders = [
@@ -18,7 +20,7 @@ function PreviewPaymentRequisitionForm() {
       'Nhà cung cấp',
       'Tổng thanh toán',
       'Ngày tạo'
-     ];
+    ];
 
     return (
       <Table.Header>
@@ -40,9 +42,9 @@ function PreviewPaymentRequisitionForm() {
       <Table.Body>
         {data.map((row, index) => (
           <Table.Row key={index}>
-            <Table.Cell>{index + 1}</Table.Cell> 
+            <Table.Cell>{index + 1}</Table.Cell>
             <Table.Cell>
-              <input type="checkbox" /> 
+              <input type="checkbox" />
             </Table.Cell>
             {Object.values(row).map((value, idx) => (
               <Table.Cell key={idx + 2}>{value}</Table.Cell>
@@ -51,6 +53,10 @@ function PreviewPaymentRequisitionForm() {
         ))}
       </Table.Body>
     );
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setActivePage(pageNumber);
   };
 
   return (
@@ -81,10 +87,27 @@ function PreviewPaymentRequisitionForm() {
                 </Table>
               </div>
             </div>
+            <div className="pagination-wrapper">
+              <div className="pagination-controls">
+                <button onClick={() => handlePageChange(activePage - 1)} disabled={activePage === 1}>
+                  <i class="angle double left icon"></i>
+                </button>
+                <button onClick={() => handlePageChange(activePage + 1)} disabled={activePage === Math.ceil(data.length / itemsPerPage)}>
+                  <span> {activePage - 1}</span>
+                </button>
+                <span className="number-page-active"> {activePage}</span>
+                <button onClick={() => handlePageChange(activePage + 1)} disabled={activePage === Math.ceil(data.length / itemsPerPage)}>
+                  <span> {activePage + 1}</span>
+                </button>
+                <button onClick={() => handlePageChange(activePage + 1)} disabled={activePage === Math.ceil(data.length / itemsPerPage)}>
+                  <i class="angle double right icon"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </Grid.Column>
       </Grid>
     </div>
   );
-  }
+}
 export default PreviewPaymentRequisitionForm;
