@@ -21,7 +21,7 @@
   font-family: 'Poppins-BoldItalic';
 }
 .sidebar-container {
-  font-weight:200;
+  font-weight: 200;
   position: fixed;
   top: 22px;
   left: 0;
@@ -39,7 +39,7 @@
   width: 15%;
 }
 .sidebar-container-item{
-  margin: 0 auto;
+  margin-left: 20px;
  }
 
 .content-container {
