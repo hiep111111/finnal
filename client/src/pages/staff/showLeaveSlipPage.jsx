@@ -2,19 +2,19 @@ import React from "react";
 import "semantic-ui-css/semantic.min.css";
 import SideBarContainer from "../../assets/sideBar.jsx"; // ko phải tạo
 import NavBarContainer from "../../assets/navBar.jsx"; // ko phải  tạo
-import PreviewLeaveSlipForm from "../../forms/previewLeaveSlipForm.jsx";
-import { DataProvider } from "../../context/previewLeaveSlipContext.js";
+import PreviewKpiPerStaffForm from "../../forms/previewKpiPerStaffForm.jsx";
+import { DataProvider } from "../../context/previewKpiPerStaffContext.js";
 
-function ShowLeaveSlipPage() {
+function ShowKpiPerStaffPage() {
   return (
     <div className="App">
       <NavBarContainer></NavBarContainer>
       <SideBarContainer></SideBarContainer>
       <DataProvider>
-        <PreviewLeaveSlipForm></PreviewLeaveSlipForm>
+        <PreviewKpiPerStaffForm></PreviewKpiPerStaffForm>
       </DataProvider>
     </div>
   );
 }
 
-export default ShowLeaveSlipPage;
+export default ShowKpiPerStaffPage;

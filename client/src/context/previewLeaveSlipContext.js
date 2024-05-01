@@ -15,15 +15,15 @@ export const DataProvider = ({ children }) => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:1235/api/kpi/get");
+      const response = await fetch("http://localhost:1235/api/leave/get");
       const responseData = await response.json();
-      console.log(responseData);
       const formattedData = responseData.map(item => ({
         userName: item.userName,
-        employeeCode: item.employeeCode,
-        Title: item.Title,
-        email: item.email,
+        informationMailList: item.informationMailList,
         department: item.department,
+        company: item.company,
+        fromDate: formatDate(item.fromDate),
+        toDate: formatDate(item.toDate),
         createdAt: formatDate(item.createdAt)
        }));
       setData(formattedData);

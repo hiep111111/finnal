@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ShowTimesheetPage from './showTimesheetPage';
 import PermisionComponet from '../../components/permisionComponet';
 import ShowKpiPerStaffPage from './showKpiPerStaffPage';
+import ShowLeaveSlipPage from './showKpiPerStaffPage';
+
 export const Staff = () => {
   return (
     <PermisionComponet>
@@ -10,6 +12,7 @@ export const Staff = () => {
       <Routes>
         <Route path="/staff/timeSheets" element={<ShowTimesheetPage />} />
         <Route path="/staff/personalKPIReports" element={<ShowKpiPerStaffPage />} />
+        <Route path="/staff/leaveSlips" element={<ShowLeaveSlipPage />} />
       </Routes>
     </BrowserRouter>
     </PermisionComponet>
