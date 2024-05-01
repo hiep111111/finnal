@@ -1,4 +1,4 @@
-const authModel = require('../models/authModel'); 
+const authModel = require('../models/authModel.js');
 
 const deleteUser = (req, res) => {
   if (req.user.id === req.params.userId || req.user.isAdmin) {

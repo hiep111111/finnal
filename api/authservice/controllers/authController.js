@@ -52,13 +52,30 @@ const login = async (req, res) => {
 const viewAuthModelData = async (req, res) => {
   try {
     const authData = await authModel.find();
-    console.log("Authentication Model Data:", authData);
+    console.log(authData);
     res.status(200).json(authData); 
   } catch (error) {
     console.error("Error viewing authentication model data:", error);
     res.status(500).json({ message: "Internal Server Error" }); 
   }
 };
+
+const viewAuthModelDatabyID = async (req, res) => {
+  const userId = req.params.userId; // Lấy ID của người dùng từ URL
+  try {
+    const authData = await authModel.findById(userId); // Tìm kiếm người dùng bằng ID
+    if (authData) {
+      console.log(authData);
+      res.status(200).json(authData); 
+    } else {
+      res.status(404).json({ message: "User not found" }); // Trả về lỗi 404 nếu không tìm thấy người dùng
+    }
+  } catch (error) {
+    console.error("Error viewing authentication model data:", error);
+    res.status(500).json({ message: "Internal Server Error" }); 
+  }
+};
+
 
 const deleteAuthModelById = async (id) => {
   try {
@@ -76,12 +93,11 @@ const deleteAuthModelById = async (id) => {
 
 const registerUser = async (req, res) => {
   try {
-      const { userName, email, passWord, isAdmin } = req.body; 
+      const { userName, email, passWord, department,company,position } = req.body; 
       const newUser = new authModel({
           userName,
           email,
           passWord,
-          isAdmin,
           department,
           company,
           position
@@ -99,4 +115,4 @@ const logout = (req, res) => {
   res.status(200).json("You logged out successfully.");
 };
 
-module.exports = { refreshToken, login, logout, registerUser, viewAuthModelData, deleteAuthModelById };
+module.exports = { refreshToken, login, logout, registerUser, viewAuthModelData, deleteAuthModelById ,viewAuthModelDatabyID};

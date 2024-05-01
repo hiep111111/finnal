@@ -46,10 +46,6 @@ const postTimeSheetController = async (req, res) => {
             });
         }
 
-        const existingTimesheetCode = await timeSheetModel.findOne({ timesheetCode });
-        if (existingTimesheetCode) {
-            return res.status(400).send({ message: 'existingTimesheetCode already exists' });
-        }
         const newTimeSheet = {
             timesheetCode,
             timesheetName ,
