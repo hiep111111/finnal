@@ -1,5 +1,5 @@
 const express = require("express");
-const { deletePaymentRequisitionControler, getAllPaymentRequisitionControler, getPaymentRequisitionControler, postPaymentRequisitionControler } = require("../controlles/paymentRequisitionControler");
+const { deletePaymentRequisitionControler, getAllPaymentRequisitionControler, getPaymentRequisitionControler, postPaymentRequisitionControler } = require("../controlles/productExportControler");
 
 const router = express.Router();
 
