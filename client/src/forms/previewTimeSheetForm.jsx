@@ -24,13 +24,13 @@ function PreviewTimeSheetForm() {
     ];
 
     return (
-      <Table.Header>
-        <Table.Row>
-          {tableHeaders.map((header, idx) => (
-            <Table.HeaderCell key={idx}>{header}</Table.HeaderCell>
-          ))}
-        </Table.Row>
-      </Table.Header>
+        <Table.Header>
+          <Table.Row>
+            {tableHeaders.map((header, idx) => (
+              <Table.HeaderCell key={idx}>{header}</Table.HeaderCell>
+            ))}
+          </Table.Row>
+        </Table.Header>
     );
   };
 

@@ -9,6 +9,8 @@ function AddingButton({ isLoading }) {
         const currentPath = window.location.pathname;
         const newPath = currentPath + "/0";
         navigate(newPath);
+        window.location.reload();
+
     };
 
     return (
