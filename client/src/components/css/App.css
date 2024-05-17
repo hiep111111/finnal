@@ -80,4 +80,8 @@
       transform: rotate(360deg);
     }
   }
+
+  .nav-bar-container .nav-bar {
+    font-family: 'Propin', sans-serif;
+  }
   

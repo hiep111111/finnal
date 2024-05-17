@@ -1,7 +1,7 @@
 import React from "react";
 import "semantic-ui-css/semantic.min.css";
-import SideBarContainer from "../../assets/constants/sideBar.jsx";
-import NavBarContainer from "../../assets/constants/navBar.jsx"; // ko phải  tạo
+import SideBarContainer from "../../assets/menuBar/sideBar.jsx";
+import NavBarContainer from "../../assets/menuBar/navBar.jsx"; // ko phải  tạo
 import PreviewKpiPerStaffForm from "../../forms/previewKpiPerStaffForm.jsx";
 import { DataProvider } from "../../context/previewKpiPerStaffContext.js";
 

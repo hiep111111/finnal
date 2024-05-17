@@ -16,7 +16,8 @@ export const staffGroup = [
   {
     groupName: "QUỸ",
     functions: {
-      paymentRequest: { text: "Đơn yêu cầu thanh toán", link: "/staff/paymentRequisitions" }
+      paymentRequest: { text: "Đơn yêu cầu thanh toán", link: "/staff/paymentRequisitions" },
+ 
     }
   }
 ];

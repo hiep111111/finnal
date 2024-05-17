@@ -25,11 +25,10 @@ const timeSheetSchema = mongoose.Schema({
     workLocation: {
         type: String,
         default: "Tại văn phòng"
-    } 
+    }
 },
 {
     timestamps: true,
 });
-
 const timeSheetModel = mongoose.model('timeSheetModel', timeSheetSchema);
 module.exports = timeSheetModel;

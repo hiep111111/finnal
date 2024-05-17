@@ -55,19 +55,19 @@ function NavBarContainer() {
   };
 
   return (
-    <div className="nav-bar-container">
+    <div className="nav-bar-container" >
       <div className="nav-bar">
         <Menu borderless inverted fluid fixed="top" color="teal">
           <Menu.Item>
             <div style={{ display: "inline-block", border: "1px solid white", borderRadius: "5px" }}>
-              AKC SERVICE
+                <span onClick={() => { handleNavigation("/staff/timeSheets"); }}>AKC SERVICE</span>
             </div>
           </Menu.Item>
           <div className="nav-bar-content">
             <Menu.Menu position="left">
               <div className={state === 1 ? 'active-item' : ''}>
                 <Menu.Item as="a" >
-                  <span onClick={() => { handleNavigation("/staff/timeSheets");  }}>Nhân viên</span>
+                  <span onClick={() => { handleNavigation("/staff/timeSheets"); }}>Nhân viên</span>
                 </Menu.Item>
               </div>
               <div className={state === 2 ? 'active-item' : ''}>

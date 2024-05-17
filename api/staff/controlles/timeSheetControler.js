@@ -35,11 +35,12 @@ const gettimeSheetByIdController = async (req, res) => {
 // Route Create
 const postTimeSheetController = async (req, res) => {
     try {
-        const { timesheetCode, timesheetName, createdByUserName, state, workDuration, workLocation } = req.body;
+        const { timesheetCode, timesheetName, createdByUserName, state, workDuration, workLocation, describe } = req.body;
         if (!timesheetCode ||
             !timesheetName ||
             !createdByUserName ||
-            !workDuration 
+            !workDuration||
+            !workLocation 
         ) {
             return res.status(400).send({
                 message: 'Send all required fields',
@@ -53,6 +54,7 @@ const postTimeSheetController = async (req, res) => {
             state ,
             workDuration ,
             workLocation,
+            describe
         };
 
         const timeSheet = await timeSheetModel.create(newTimeSheet);

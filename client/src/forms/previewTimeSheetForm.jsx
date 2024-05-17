@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Divider, Grid, Table } from "semantic-ui-react";
 import { useData } from "../context/previewTimeSheetContext";
 import '../assets/css/index.css'
-import { AddingButton, SeachingButton, RefreshButton } from "../assets/constants/button";
+import { AddingButton, SeachingButton, RefreshButton } from "../assets/menuBar/button";
 import ReactPaginate from 'react-js-pagination';
 
 function PreviewTimeSheetForm() {
@@ -24,13 +24,13 @@ function PreviewTimeSheetForm() {
     ];
 
     return (
-        <Table.Header>
-          <Table.Row>
-            {tableHeaders.map((header, idx) => (
-              <Table.HeaderCell key={idx}>{header}</Table.HeaderCell>
-            ))}
-          </Table.Row>
-        </Table.Header>
+      <Table.Header>
+        <Table.Row>
+          {tableHeaders.map((header, idx) => (
+            <Table.HeaderCell key={idx} style={{ textAlign: 'center' , fontSize: '15px'    }}>{header}</Table.HeaderCell>
+          ))}
+        </Table.Row>
+      </Table.Header>
     );
   };
 

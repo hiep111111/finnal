@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Divider, Grid, Table } from "semantic-ui-react";
 import { useData } from "../context/previewProductContext";
 import '../assets/css/index.css'
-import { AddingButton, SeachingButton, RefreshButton } from "../assets/constants/button";
+import { AddingButton, SeachingButton, RefreshButton } from "../assets/menuBar/button";
 
 function PreviewExportProductForm() {
   const { data, isLoading } = useData();
@@ -14,7 +14,7 @@ function PreviewExportProductForm() {
       'STT',
       ' ',
       'Tên sản phẩm',
-      'số lượng',
+      'Số lượng',
       "Nhà cung cấp",
       "Email nhà cung cấp",
        'Ngày tạo'
@@ -24,7 +24,7 @@ function PreviewExportProductForm() {
       <Table.Header>
         <Table.Row>
           {tableHeaders.map((header, idx) => (
-            <Table.HeaderCell key={idx}>{header}</Table.HeaderCell>
+            <Table.HeaderCell key={idx} style={{ textAlign: 'center' , fontSize: '15px'    }}>{header}</Table.HeaderCell>
           ))}
         </Table.Row>
       </Table.Header>

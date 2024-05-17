@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Divider, Grid, Table } from "semantic-ui-react";
 import { useData } from "../context/previewOverTimeContext";
 import '../assets/css/index.css'
-import { AddingButton, SeachingButton, RefreshButton } from "../assets/constants/button";
+import { AddingButton, SeachingButton, RefreshButton } from "../assets/menuBar/button";
 
 function PreviewOverTimeForm() {
   const { data, isLoading } = useData();
@@ -25,7 +25,7 @@ function PreviewOverTimeForm() {
       <Table.Header>
         <Table.Row>
           {tableHeaders.map((header, idx) => (
-            <Table.HeaderCell key={idx}>{header}</Table.HeaderCell>
+            <Table.HeaderCell key={idx} style={{ textAlign: 'center' , fontSize: '15px'    }}>{header}</Table.HeaderCell>
           ))}
         </Table.Row>
       </Table.Header>
