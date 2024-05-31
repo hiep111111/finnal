@@ -42,7 +42,7 @@ const login = async (req, res) => {
         refreshToken,
       });
     } else {
-      res.status(400).json("Username or password incorrect!");
+      res.status(400).json("Nhập sai mật khẩu hoặc tài khoản");
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

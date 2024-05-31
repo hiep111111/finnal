@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import PermisionComponet from '../../components/permisionComponet';
+import PermisionComponet from '../../components/permisionComponent';
 import ShowProductPage from './showProductPage';
 import ShowExportProductPage from './showExportProductPage';
 import ShowImportProductPage from './showImportProductPage';

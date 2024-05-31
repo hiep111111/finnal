@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ShowTimesheetPage from './showTimesheetPage';
-import PermisionComponet from '../../components/permisionComponet';
+import PermisionComponet from '../../components/permisionComponent';
 import ShowKpiPerStaffPage from './showKpiPerStaffPage';
 import ShowLeaveSlipPage from './showLeaveSlipPage';
 import ShowOverTimePage from './showOverTimePage';
