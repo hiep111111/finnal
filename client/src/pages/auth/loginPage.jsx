@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/App.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../components/defaultComponet';
+import background from '../css/background.jpg';
 
 const LoginPage = () => {
   const { login, isLoggedIn } = useAuth(); // Giả sử useAuth cung cấp hàm login và isLoggedIn
@@ -14,7 +15,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/staff/timeSheets");
-      window.location.reload()
+      window.location.reload();
     }
   }, [isLoggedIn, navigate]);
 
@@ -24,16 +25,24 @@ const LoginPage = () => {
     try {
       await login(userName, passWord);
       navigate("/staff/timeSheets");
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
       setError("Username or password incorrect!");
     } finally {
       setIsLoading(false);
     }
   };
- 
+
   return (
-    <div >
+    <div style={{ 
+      backgroundImage: `url(${background})`, 
+      backgroundSize: 'cover', 
+      backgroundPosition: 'center', 
+      height: '100vh', 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center' 
+    }}>
       <div className="form-Login">
         <div className="login">
           <form onSubmit={handleLogin}>
